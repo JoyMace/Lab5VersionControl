@@ -1,0 +1,61 @@
+CSCI 3308 Lab 2
+Joy Mace
+Nathaniel: naab2608@colorado.edu
+
+1-1) 	unzip Lab2.zip -d Lab2
+	cd Lab2
+	//downloaded and unzipped files
+
+2-1) $ diff fruits_v1.txt fruits_v2.txt
+	11a12
+	> Cranberry
+	21d21
+	< Jackfruit
+	31a32
+	> Nectarine
+	40a42
+	> Prickly Pear
+
+2-2) > means added to file
+	< means removed from file
+
+2-3) $ diff fruits_v1.txt fruits_v2.txt -c shows the list as changes are made with a + or - indicating what was added or removed, and date/time of change
+
+3-1) $ wc -l password_demo.txt //prints number of lines in file
+	15 password_demo.txt
+
+3-2) $ wc -m password_demo.txt //prints number of characters in file
+	692 password_demo.txt
+
+4-1) $ awk -F ":" '{ print $1 }' password_demo.txt //prints user names
+
+4-2) $ awk '{ print $2, $4 }' grades.txt //prints second and 4th columns in file
+
+5-1) $ cut -d ':' -f 4 password_demo.txt | sort | uniq // uses delimiter to print 4th column of file
+
+5-2) $ cut -d ':' -f 4 password_demo.txt | sort | uniq > tmp.txt //uses delimeter to print 4th column of file to a new file
+
+5-3) $ cut -d ':' -f 1,6  password_demo.txt | grep ^[mws] //uses a delimeter to cut and print first and 6th columns of file that begin with m w or s
+
+6-1) $ sed 's/[a-z]*//g' cryptic.txt | sed 's/[0-9]*/'_'/g' //remove all characters, remove numbers and replace with '_'
+
+6-2) $ sed 's/0/o/g' cryptic.txt | sed 's/4/a/g' | sed 's/3/e/g' | sed 's/5/s/g' | sed 's/7/t/g' | sed 's/1/i/g' //replaces numbers with the correct character
+
+6-3) $ vi myScript.sh //change cyrptic.txt in the above lines to $1 to accept user input of a filename
+
+7-1) $ awk '{ for(i=1; i<=NF;i++) j+=$i; print $1, $2, (j/5)*100; j=0 }' grades.txt // uses a loop to sum numbers in columns, then prints the grade for each user after their first/last names
+
+7-2) $ awk '{ sum += $3 } END { print sum*100/7 }' grades.txt 
+71.4286 //Adds all numbers in row 3, prints average as grade
+
+8-1) $ grep -o '[0-9]\{3\}\-' regex_practice_data.txt | wc -l
+1540 //counts number of phone numbers in file
+
+8-2) $ grep -o '303-441-' regex_practice_data.txt | wc -l
+51 //51 phone numbers that start with 303-441- (Boulder)
+
+8-3) $ grep -o '@' regex_practice_data.txt | wc -l
+17706 // number of email addresses in file
+
+8-4) $ grep -o '@' | grep -o '.gov' regex_practice_data.txt | wc -l
+58 // 58 .gov email addresses

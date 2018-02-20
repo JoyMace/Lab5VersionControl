@@ -1,0 +1,75 @@
+Joy Mace
+Heinz Boehmer
+
+jocelyn.mace@colorado.edu
+
+UNIX Commands:
+
+1.  - cd Desktop // Make sure we know where we are creating the directory
+    - mkdir cs3308 // Creates directory named cs3308
+
+2.  - mv cs3308 CSCI3308
+
+3.  - cd CSCI3308 // Go into directory where Lab1 folder is stored
+    - unzip Lab1.zip // Unzip Lab1 zip file
+    - ls -a // Lists contents of Lab1 directory, -a shows hidden files, there is one hidden file named .secrets.txt
+
+4.  - ls -l -S // -l flag lists each file in new line and shows details about file, -S sorts by size, biggest file is the volcano one
+
+5.  - cd - // Go to previous directory
+    - mkdir bigData // Create directory bigData
+    - cp ~/Desktop/CSCI3308/pictures/Eyjafjallajokull_volcano_plume_2010_04_17.jpg ~/Desktop/CSCI3308/bigData/ // Copy biggest picture to bigData
+    - cd texts // Go into texts directory
+    - ls -l -S // List contents of texts directory, sorted by size, dracula.txt is biggest file
+    - cp ~/Desktop/CSCI3308/texts/dracula.txt ~/Desktop/CSCI3308/bigData/ // Copy biggest text file to bigData directory
+    - cd - // Go to previous directory
+    - du -s bigData // Find size of bigData directory, size 8640 kB
+
+6.  - zip -r bigData.zip bigData/ // Zip bigData
+    - ls -l // Shows details of all files, bigData.zip is 8220500 bytes
+
+7.  - tar -cf bigData.tar bigData/ // Tar bigData, -c creates, -f uses archive file
+    - ls -l // Shows details of all files, bigData.tar is 8847360 bytes
+
+8.  - rm -r bigData/ // Recursively remove bigData
+    - rm bigData.zip // Remove bigData.zip
+
+9.  - tar -xf bigData.tar // Untar bigData.tar, -x extracts, -f uses archive file
+
+10. - mkdir little1 // Make directory to extract contents of little1.zip to
+    - unzip little1.zip -d little1/ // Unzip little1.zip into little1 directory
+    - mkdir little2 // Make directory to extract contents of little2.zip to
+    - unzip little2.zip -d little2/ // Unzip little2.zip into little2 directory
+    - ls little1 // Shows contents of little1, it contains a picture and a text file
+    - ls little2 // Shows contents of little2, it contains a folder, which in turn contains the same picture and text file
+
+11. - find . -name target.txt // Find target.txt, path from Lab1 directory is ./Mystery/32/target.txt
+    - find $(pwd) -name target.txt // Find target.txt again, full path is /home/user/Desktop/CSCI3308/Mystery/32/target.txt
+
+12. - cd texts/ // Go into texts directory
+    - head -n 5 aliceinwonderland.txt >> shortStory.txt // Copy first five lines of file into new file
+    - tail -n 5 dracula.txt >> shortStory.txt // Copy last five lines of file into new file
+
+
+Fancy UNIX Commands:
+
+0.  - cp /etc/passwd ~/Desktop/CSCI3308/ // copy passwd file into working directory
+    - mv passwd password_demo.txt // Rename file
+
+1.  - sort -d -k1 password_demo.txt // Shows sorted file based on username
+
+2.  - sort -t: -k 3  password_demo.txt // Shows sorted file, using delimeter ':', third column
+
+3.  - sort -t: -k 4,4 -k3,3  password_demo.txt // Sorts by GID then UID
+
+4.  - grep 'daemon' password_demo.txt // Shows lines with name daemon in them
+
+5.  - wc -l  password_demo.txt // Shows number of lines in a file
+
+6.  - uniq -u password_demo.txt //Prints only unique lines
+
+7.  - uniq -u password_demo.txt >tmp.txt //Prints unique lines to file
+
+8.  - vi getUniqueGID.sh //creates a new file, opens vim
+    - ./getUniqueGID.sh //executes file
+    - chmod 755 getUniqueGID.sh //changes permissions
